@@ -1,5 +1,5 @@
 ---
-name: XYZ
+name: xyz
 description: 把「一个选题」做成可发布的竖屏中文知识短片（1080×1920 / 30fps / 约 4 分钟），纸感手账视觉 + 3D emoji 图标 + 逐字卡点动效 + 人声优先混音。输入只有选题和少量特殊要求，其余全部自动决策；只在「关键帧」和「成片预览」两处停下等确认，交付前必须自检三遍。适用于科普、传统文化、行业解读、产品概念讲解；不适用于实拍、真人出镜、纯剪辑。
 license: MIT
 metadata:
@@ -8,7 +8,7 @@ metadata:
   based_on: ConardLi/garden-skills motion-showreel (MIT) + 《Codex 能力分 5 级》视觉拆解 + 《AI做动画视频完全指南》教学片
 ---
 
-# XYZ · 知识短片工坊 v2
+# xyz · 知识短片工坊 v2
 
 **输入只有选题，输出是能直接发的 MP4。**
 
