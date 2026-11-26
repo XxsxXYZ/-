@@ -1,0 +1,96 @@
+# checkpoint.yaml — 停车点策略
+# 作用：决定每一关是「存盘继续」还是「停下来等人」。
+# 你不用读懂它，只要知道：ask_human: true 的三关会来找你。
+
+version: 1
+
+# ─────────────────────────────────────────────
+# 关卡定义
+# ─────────────────────────────────────────────
+stages:
+
+  research:
+    checkpoint: true
+    ask_human: false        # 研究简报自己过，不打断你
+    gate: references/06-research-gate.md
+    pass_when:
+      - 同类内容 >= 3 条
+      - 差异点 >= 1 个
+      - A 档硬事实 >= 5 条
+    on_fail: 回去补研究，或换角度；不写稿
+
+  keyframes:                # 🛑 停车点 A
+    checkpoint: true
+    ask_human: true
+    deliver:
+      - 一句话方案
+      - 3 张真渲出来的关键帧（开场 / 记忆点 / 结尾）
+      - 提问：画面方向对吗？改哪儿？
+    on_fail: 只改画面，不写分镜、不渲整片
+
+  script:
+    checkpoint: true
+    ask_human: false        # 存盘即可，不打断
+    gate: references/copywriting.md
+    pass_when:
+      - AI 味标记词命中 = 0
+      - 平均句长 <= 20 字
+      - 逻辑自洽通读通过（无前后矛盾）
+      - C 档事实已删
+    on_fail: 重写，不进入分镜
+
+  storyboard:
+    checkpoint: true
+    ask_human: false
+    pass_when:
+      - 每句都有画面元素
+      - 每段都有触发词（不是按秒出场）
+    on_fail: 补画面元素
+
+  production:
+    checkpoint: true
+    ask_human: false
+    pass_when:
+      - 每改一次都渲过 3-6 帧
+      - 无元素重叠 / 无空屏 / 图标可辨认
+    on_fail: 修完再继续，不许直接跑整片
+
+  preview:                  # 🛑 停车点 B
+    checkpoint: true
+    ask_human: true
+    deliver:
+      - 成片（带声音播放）
+      - 技术检查结果
+    on_fail: 按反馈改，改一段只重渲一段
+
+  delivery:
+    checkpoint: false       # 最后一关，不存盘
+    ask_human: false
+    gate: references/03-qa.md
+    pass_when:
+      - All technical checks passed
+      - flash frames: none
+      - 响度 -14 ± 1 LUFS
+      - 真峰值 <= -1 dBTP
+      - 用户已看过成片
+    on_fail: 不许交付
+
+# ─────────────────────────────────────────────
+# 时间预算（超过就停下来告诉用户，不要闷头重试）
+# ─────────────────────────────────────────────
+budget:
+  single_still_max_sec: 60      # 渲一帧静图
+  single_segment_max_sec: 120   # 单段重渲
+  full_build_max_min: 8         # 整片构建
+  research_max_min: 40          # 研究关卡
+  max_reruns_per_stage: 3       # 同一关最多返工 3 次，超过就报告
+
+# ─────────────────────────────────────────────
+# 硬红线（违反直接返工，不许解释）
+# ─────────────────────────────────────────────
+hard_stops:
+  - 没渲关键帧就写分镜
+  - 没跑三遍验收就交付
+  - 用 pop(u, 秒) 按秒出场（必须逐字卡点）
+  - 抄 AGPL 代码进本仓库（本仓库是 MIT）
+  - 断言未实际执行的动作（"已验证""已生效"）

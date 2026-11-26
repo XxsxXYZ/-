@@ -14,6 +14,8 @@
 |---|---|
 | `SKILL.md` | 主文件：工作流、两个停车点、核心方法、视觉/叙事/文案/音效/合规/核查标准、交付清单 |
 | `references/00-hard-bans.md` | **36 条明令禁止**（开拍前必读） |
+| `references/06-research-gate.md` | **研究关卡**：写稿前四问 + 输出模板（v3 新增） |
+| `checkpoint.yaml` | 停车点策略 + 时间预算 + 硬红线（v3 新增） |
 | `references/01-pitfalls.md` | **28 个真实踩坑**：现象 → 根因 → 正解 |
 | `references/02-method-sync.md` | 两遍法 / 逐字卡点 / 场景制 / 持续运动 / 双层视觉 的实现 |
 | `references/03-qa.md` | 三遍验收流程与判定标准 + 降本增效对照表 |
@@ -35,6 +37,17 @@
 3. 《AI做动画视频完全指南》教学片的 **8 条技巧**
 4. 一个中医科普项目（《闻诊：望闻问切的「闻」到底在闻什么》）的**完整制作过程**
 5. 用户逐条下达的**明令禁止**与纠正记录
+
+---
+
+## v3 新增（2026-11）
+
+从 [OpenMontage](https://github.com/OpenMontageInc/OpenMontage)（8.3 万星）借了两样**管理方法**，没抄任何代码、没引入任何依赖、许可仍是 MIT：
+
+1. **研究关卡**（`references/06-research-gate.md`）—— 写稿前必须凑够 ≥3 同类内容 + ≥1 差异点 + ≥5 条 A 档事实。把"事实错误"从靠自觉变成硬门槛。
+2. **结构化停车点**（`checkpoint.yaml`）—— 七关各配 `checkpoint` / `ask_human` / `pass_when`，外加时间预算与硬红线。
+
+文件数 16 → 18，行数 1600 → 2100，**没有引入 schema 校验器、没有 pipeline runner**（那是另一个量级的工程）。
 
 ---
 
