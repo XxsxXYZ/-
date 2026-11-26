@@ -1,6 +1,6 @@
 # checkpoint.yaml — 停车点策略
 # 作用：决定每一关是「存盘继续」还是「停下来等人」。
-# 你不用读懂它，只要知道：ask_human: true 的三关会来找你。
+# 你不用读懂它，只要知道：ask_human: true 的两关（keyframes / preview）会来找你。
 
 version: 1
 
